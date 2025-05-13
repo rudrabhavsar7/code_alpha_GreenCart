@@ -108,7 +108,7 @@ export const placeOrderStripe = async (req, res) => {
     //create session
     const session = await stripeInstance.checkout.sessions.create({
       line_items,
-      mode: "Payment",
+      mode: "payment",
       success_url: `${origin}/loader?next=my-orders`,
       cancel_url: `${origin}/cart`,
       metadata: {
@@ -132,7 +132,7 @@ export const stripeWebhooks = async (req, res) => {
   let event;
 
   try {
-    event.stripeInstanc.webhooks.constructEvent(
+    event.stripeInstance.webhooks.constructEvent(
       req.body,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
@@ -167,7 +167,7 @@ export const stripeWebhooks = async (req, res) => {
       });
       break;
 
-    case "payment_intent.succeeded": {
+    case "payment_intent.failed": {
       const paymentIntent = event.data.object;
       const paymentIntentId = paymentIntent.id;
 
@@ -187,7 +187,7 @@ export const stripeWebhooks = async (req, res) => {
       break;
   }
 
-  response.json({recevied:true});
+  res.json({recevied:true});
 };
 
 //get orders by user id : /api/order/user
