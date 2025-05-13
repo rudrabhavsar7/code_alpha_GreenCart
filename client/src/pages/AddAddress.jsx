@@ -46,7 +46,7 @@ const AddAddress = () => {
         userId: user._id,
         address,
       });
-
+      console.log(data);
       if (data.success) {
         toast.success(data.message);
         navigate("/cart");
@@ -72,7 +72,7 @@ const AddAddress = () => {
       <div className="flex flex-col-reverse md:flex-row justify-between mt-10">
         <div className="flex-1 max-w-md">
           <form
-            onSubmit={() => onSubmitHandler}
+            onSubmit={onSubmitHandler}
             className="space-y-3 mt-6 text-sm"
           >
             <div className="grid grid-cols-2 gap-4">
@@ -127,7 +127,7 @@ const AddAddress = () => {
               <InputField
                 handleChange={handleChange}
                 address={address}
-                name="zipCode"
+                name="zipcode"
                 type="number"
                 placeholder="Zip Code"
               />
