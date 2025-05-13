@@ -5,7 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const sellerLayout = () => {
+const SellerLayout = () => {
   const { navigate, axios } = useAppContext();
 
   const sidebarLinks = [
@@ -76,4 +76,4 @@ const sellerLayout = () => {
   );
 };
 
-export default sellerLayout;
+export default SellerLayout;
